@@ -1,0 +1,1 @@
+Prompt 1: Kiểm tra xem đoạn code JS của tôi sử dụng switch-case và if else đã chuẩn cấu trúc và tối ưu chưa?
