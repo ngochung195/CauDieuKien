@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Logic 2/3 Nút Gạt</title>
+    <style>
+        .nut-gat {
+            appearance: none;
+            width: 60px;
+            height: 30px;
+            background-color: #ccc;
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+
+        .nut-gat::before {
+            content: "";
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background-color: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: 0.2s;
+        }
+
+        .nut-gat:checked::before {
+            left: 32px;
+        }
+
+        .good:checked {
+            background-color: rgb(12, 213, 12);
+        }
+
+        .cheap:checked {
+            background-color: #3b19e8;
+        }
+
+        .fast:checked {
+            background-color: red;
+        }
+
+        .dong {
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dong">
+        <input type="checkbox" class="nut-gat good" checked>
+        <span>GOOD</span>
+    </div>
+
+    <div class="dong">
+        <input type="checkbox" class="nut-gat cheap">
+        <span>CHEAP</span>
+    </div>
+
+    <div class="dong">
+        <input type="checkbox" class="nut-gat fast" checked>
+        <span>FAST</span>
+    </div>
+
+    <script>
+        const danhSachNut = document.querySelectorAll('.nut-gat');
+
+        let lichSuBatNut = [];
+
+        danhSachNut.forEach(nut => {
+            if (nut.checked) {
+                lichSuBatNut.push(nut);
+            }
+        });
+
+        danhSachNut.forEach(nutDuocBam => {
+            nutDuocBam.addEventListener('change', () => {
+
+                if (nutDuocBam.checked) {
+                    lichSuBatNut.push(nutDuocBam);
+
+                    if (lichSuBatNut.length > 2) {
+                        const nutCuNhat = lichSuBatNut.shift();
+
+                        nutCuNhat.checked = false;
+                    }
+                } else {
+                    lichSuBatNut = lichSuBatNut.filter(n => n !== nutDuocBam);
+                }
+
+            });
+        });
+    </script>
+
+</body>
+
+</html>
