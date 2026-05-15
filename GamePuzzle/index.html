@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Puzzle Hình Ảnh Mới</title>
+    <style>
+        .puzzle-box {
+            width: 300px;
+            height: 150px;
+            margin: 5px;
+            cursor: pointer;
+            display: block;
+            border: 2px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Game Puzzle Hình Ảnh</h2>
+    <p>Click vào từng mảnh ghép để đổi hình. Ghép chuẩn 3 mảnh của cùng 1 bức tranh để thắng!</p>
+
+    <img id="part1" class="puzzle-box" data-img="Cho" src="https://picsum.photos/id/237/300/150"
+        onclick="changeImage('part1', 'top')">
+    <img id="part2" class="puzzle-box" data-img="Nui" src="https://picsum.photos/id/866/300/151"
+        onclick="changeImage('part2', 'mid')">
+    <img id="part3" class="puzzle-box" data-img="SuTu" src="https://picsum.photos/id/1074/300/152"
+        onclick="changeImage('part3', 'bot')">
+
+    <h1 id="thong-bao" style="color: green; display: none;">BẠN ĐÃ THẮNG!</h1>
+
+    <script>
+        const khoAnh = {
+            Cho: {
+                top: "https://picsum.photos/id/237/300/150",
+                mid: "https://picsum.photos/id/237/300/151",
+                bot: "https://picsum.photos/id/237/300/152"
+            },
+            Nui: {
+                top: "https://picsum.photos/id/866/300/150",
+                mid: "https://picsum.photos/id/866/300/151",
+                bot: "https://picsum.photos/id/866/300/152"
+            },
+            SuTu: {
+                top: "https://picsum.photos/id/1074/300/150",
+                mid: "https://picsum.photos/id/1074/300/151",
+                bot: "https://picsum.photos/id/1074/300/152"
+            }
+        };
+
+        const danhSachBoAnh = ["Cho", "Nui", "SuTu"];
+
+        function changeImage(idCuaO, viTriCuaAnh) {
+            let oHienTai = document.getElementById(idCuaO);
+            let anhHienTai = oHienTai.getAttribute("data-img");
+
+            let viTriHienTai = danhSachBoAnh.indexOf(anhHienTai);
+            let viTriTiepTheo = (viTriHienTai + 1) % danhSachBoAnh.length;
+            let anhMoi = danhSachBoAnh[viTriTiepTheo];
+
+            oHienTai.src = khoAnh[anhMoi][viTriCuaAnh];
+            oHienTai.setAttribute("data-img", anhMoi);
+
+            kiemTraChienThang();
+        }
+
+        function kiemTraChienThang() {
+            let anh1 = document.getElementById("part1").getAttribute("data-img");
+            let anh2 = document.getElementById("part2").getAttribute("data-img");
+            let anh3 = document.getElementById("part3").getAttribute("data-img");
+
+            let thongBao = document.getElementById("thong-bao");
+
+            if (anh1 === anh2 && anh2 === anh3) {
+                thongBao.style.display = "block";
+            } else {
+                thongBao.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
