@@ -1,0 +1,24 @@
+<body>
+    <h3>Kiểm tra tuổi hợp lệ</h3>
+
+    <label>Nhập vào một số: </label>
+    <input type="number" id="soTuoi">
+    <br><br>
+
+    <button onclick="kiemTraTuoi()">Kiểm tra</button>
+
+    <p id="result"></p>
+
+    <script>
+        function kiemTraTuoi() {
+            let tuoi = Number(document.getElementById('soTuoi').value);
+            let kq = document.getElementById('result');
+
+            if (tuoi > 0 && tuoi < 120) {
+                kq.innerHTML = `${tuoi} là tuổi của một người hợp lệ.`;
+            } else {
+                kq.innerHTML = `${tuoi} không phải là tuổi của một người.`;
+            }
+        }
+    </script>
+</body>

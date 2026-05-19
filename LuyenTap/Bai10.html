@@ -1,0 +1,40 @@
+<body>
+    <h3>Tính Tiền Điện Sinh Hoạt (Chưa VAT)</h3>
+
+    <label>Nhập số điện tiêu thụ (kWh): </label>
+    <input type="number" id="sodien" min="0">
+    <br><br>
+
+    <button onclick="tinhTienDien()">Tính tiền</button>
+
+    <p id="result"></p>
+
+    <script>
+        function tinhTienDien() {
+            let kwh = Number(document.getElementById('sodien').value);
+            let kq = document.getElementById('result');
+            let tien = 0;
+
+            if (kwh <= 0) {
+                kq.innerHTML = "Vui lòng nhập số kWh lớn hơn 0.";
+                return;
+            }
+
+            if (kwh <= 50) {
+                tien = kwh * 1806;
+            } else if (kwh <= 100) {
+                tien = (50 * 1806) + ((kwh - 50) * 1866);
+            } else if (kwh <= 200) {
+                tien = (50 * 1806) + (50 * 1866) + ((kwh - 100) * 2167);
+            } else if (kwh <= 300) {
+                tien = (50 * 1806) + (50 * 1866) + (100 * 2167) + ((kwh - 200) * 2729);
+            } else if (kwh <= 400) {
+                tien = (50 * 1806) + (50 * 1866) + (100 * 2167) + (100 * 2729) + ((kwh - 300) * 3050);
+            } else {
+                tien = (50 * 1806) + (50 * 1866) + (100 * 2167) + (100 * 2729) + (100 * 3050) + ((kwh - 400) * 3157);
+            }
+
+            kq.innerHTML = `Số điện tiêu thụ: ${kwh} kWh \nTổng tiền điện: ${tien.toLocaleString('vi-VN')} VNĐ`;
+        }
+    </script>
+</body>

@@ -1,0 +1,34 @@
+<body>
+    <h3>Giải PT bậc 1</h3>
+
+    <p>ax + b = 0</p>
+
+    <value>Nhập a: </value>
+    <input type="number" id="a">
+    <br><br>
+    <value>Nhập b: </value>
+    <input type="number" id="b">
+    <br><br>
+
+    <button onclick="giaiPT()">Giải phương trình</button>
+
+    <p id="result"></p>
+    <script>
+        function giaiPT() {
+            let a = Number(document.getElementById('a').value);
+            let b = Number(document.getElementById('b').value);
+            let kq = document.getElementById('result');
+
+            if (a === 0) {
+                if (b === 0) {
+                    kq.innerHTML = "Phương trình có vô số nghiệm.";
+                } else {
+                    kq.innerHTML = "Phương trình vô nghiệm.";
+                }
+            } else {
+                let x = -b / a;
+                kq.innerHTML = `Phương trình có nghiệm duy nhất: x = ${x}`;
+            }
+        }
+    </script>
+</body>

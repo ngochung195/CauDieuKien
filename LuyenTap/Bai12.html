@@ -1,0 +1,43 @@
+<body>
+    <h3>Tính Lãi Kép Ngân Hàng (Lãi mẹ đẻ lãi con)</h3>
+
+    <label>Số tiền ban đầu (VNĐ): </label>
+    <input type="number" id="tienGoc" min="0">
+    <br><br>
+
+    <label>Số tháng vay: </label>
+    <input type="number" id="soThang" min="1">
+    <br><br>
+
+    <label>Lãi suất hàng tháng (%): </label>
+    <input type="number" id="laiSuat" step="0.1" min="0">
+    <br><br>
+
+    <button onclick="tinhLaiKep()">Tính kết quả</button>
+
+    <p id="result"></p>
+
+    <script>
+        function tinhLaiKep() {
+            let P = Number(document.getElementById('tienGoc').value);
+            let n = Number(document.getElementById('soThang').value);
+            let r = Number(document.getElementById('laiSuat').value) / 100;
+            let kq = document.getElementById('result');
+
+            if (P <= 0 || n <= 0 || r <= 0) {
+                kq.innerHTML = "Vui lòng nhập các giá trị lớn hơn 0.";
+                return;
+            }
+
+            let tongTien = P * Math.pow((1 + r), n);
+            let tienLai = tongTien - P;
+
+            tongTien = Math.round(tongTien);
+            tienLai = Math.round(tienLai);
+
+            kq.innerHTML = `Tiền gốc ban đầu: ${P.toLocaleString('vi-VN')} VNĐ
+                            Tiền lãi ăn theo lãi kép: ${tienLai.toLocaleString('vi-VN')} VNĐ
+                            Tổng số tiền cuối cùng (Cả gốc lẫn lãi): ${tongTien.toLocaleString('vi-VN')} VNĐ`;
+        }
+    </script>
+</body>

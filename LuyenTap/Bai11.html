@@ -1,0 +1,45 @@
+<body>
+    <h3>Tính Thuế Thu Nhập Cá Nhân (Lũy tiến)</h3>
+
+    <label>Nhập thu nhập tính thuế (triệu VNĐ): </label>
+    <input type="number" id="thuNhap" min="0">
+    <br><br>
+
+    <button onclick="tinhThue()">Tính thuế</button>
+
+    <p id="result"></p>
+
+    <script>
+        function tinhThue() {
+            let tn = Number(document.getElementById('thuNhap').value);
+            let kq = document.getElementById('result');
+            let thue = 0;
+
+            if (tn <= 0) {
+                kq.innerHTML = "Thu nhập không chịu thuế hoặc vui lòng nhập số lớn hơn 0.";
+                return;
+            }
+
+            if (tn <= 5) {
+                thue = tn * 0.05;
+            } else if (tn <= 10) {
+                thue = (tn * 0.1) - 0.25;
+            } else if (tn <= 18) {
+                thue = (tn * 0.15) - 0.75;
+            } else if (tn <= 32) {
+                thue = (tn * 0.2) - 1.65;
+            } else if (tn <= 52) {
+                thue = (tn * 0.25) - 3.25;
+            } else if (tn <= 80) {
+                thue = (tn * 0.3) - 5.85;
+            } else {
+                thue = (tn * 0.35) - 9.85;
+            }
+
+            let dongThue = thue * 1000000;
+            let dongThuNhap = tn * 1000000;
+
+            kq.innerHTML = `Thu nhập tính thuế: ${dongThuNhap.toLocaleString('vi-VN')} VNĐ \nSố thuế TNCN phải nộp: ${dongThue.toLocaleString('vi-VN')} VNĐ`;
+        }
+    </script>
+</body>

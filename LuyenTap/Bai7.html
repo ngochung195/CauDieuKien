@@ -1,0 +1,50 @@
+<body>
+
+    <h3>Giải phương trình bậc 2: ax² + bx + c = 0</h3>
+
+    <label>Nhập a: </label>
+    <input type="number" id="a" placeholder="a">
+    <br>
+    <label>Nhập b: </label>
+    <input type="number" id="b" placeholder="b">
+    <br>
+    <label>Nhập c: </label>
+    <input type="number" id="c" placeholder="c">
+    <br><br>
+
+    <button onclick="giaiPTBac2()">Giải phương trình</button>
+
+    <div id="result"></div>
+
+    <script>
+        function giaiPTBac2() {
+            let a = Number(document.getElementById('a').value);
+            let b = Number(document.getElementById('b').value);
+            let c = Number(document.getElementById('c').value);
+            let kq = document.getElementById('result');
+
+            if (a === 0) {
+                kq.style.color = "red";
+                kq.innerHTML = "Hệ số a phải khác 0 thì mới là phương trình bậc 2!";
+                return;
+            }
+
+            let delta = (b * b) - (4 * a * c);
+            kq.style.color = "black"; // Reset màu chữ kết quả
+
+            if (delta < 0) {
+                kq.innerHTML = `Biệt thức &Delta; = ${delta} < 0 <br> &rArr; Phương trình vô nghiệm.`;
+            } else if (delta === 0) {
+                let x = -b / (2 * a);
+                kq.innerHTML = `Biệt thức &Delta; = 0 <br> &rArr; Phương trình có nghiệm kép: x₁ = x₂ = ${Number(x.toFixed(2))}`;
+            } else {
+                let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                kq.innerHTML = `Biệt thức &Delta; = ${delta} > 0 <br> &rArr; Phương trình có 2 nghiệm phân biệt:<br>
+                                x₁ = ${Number(x1.toFixed(2))}<br>
+                                x₂ = ${Number(x2.toFixed(2))}`;
+            }
+        }
+    </script>
+
+</body>
